@@ -16,7 +16,7 @@ chains:
   secret:
     source: !env
       variable: "{{secretEnv}}"
-    sensitive: false
+    sensitive: true
   videoId:
     source: !prompt
       message: "Enter the video ID"
