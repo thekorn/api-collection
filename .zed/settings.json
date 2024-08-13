@@ -1,0 +1,9 @@
+{
+  "lsp": {
+    "yaml-language-server": {
+      "initialization_options": {
+        "yaml.customTags": ["!request mapping"]
+      }
+    }
+  }
+}

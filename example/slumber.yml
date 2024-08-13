@@ -1,0 +1,4 @@
+requests:
+  get: !request
+    method: GET
+    url: https://httpbin.org/get
