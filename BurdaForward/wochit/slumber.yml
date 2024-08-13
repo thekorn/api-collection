@@ -1,0 +1,5 @@
+requests:
+  getFeed: !request
+    name: GET video feed
+    method: GET
+    url: "https://api.wochit.com/api/?partnerID=c97e78c23aa9490b75b1fc4e211d82ead990db4c312eaa8b36fc99772fed4c05&action=MRSS&programmer=Bunte"
