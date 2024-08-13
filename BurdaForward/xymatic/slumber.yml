@@ -1,0 +1,39 @@
+profiles:
+  bunteProduction:
+    name: production - bunte
+    data:
+      endpoint: https://metaview-api.delight.video
+      licenseKey: 5412c3162c8e822561eae05be9eead48393d22ec
+      secretEnv: BUNTE_XYMATIC_SECRET_PRODUCTION
+  bunteStaging:
+    name: staging - bunte
+    data:
+      endpoint: https://metaview-api-staging.delight.video
+      licenseKey: 5412c3162c8e822561eae05be9eead48393d22ec
+      secretEnv: BUNTE_XYMATIC_SECRET_STAGING
+
+chains:
+  secret:
+    source: !env
+      variable: "{{secretEnv}}"
+    sensitive: false
+  videoId:
+    source: !prompt
+      message: "Enter the video ID"
+      default: "97b69ce45222ddb89d9768d0999cbded1a88943e"
+
+.ignore:
+  base: &base
+    headers:
+      Accept: application/json
+
+requests:
+  metadata: !folder
+    name: Video - Metadata
+    requests:
+      getVideoMetadata: !request
+        <<: *base
+        name: GET metadata of video
+        method: GET
+        url: "{{endpoint}}/v1/get_video/{{licenseKey}}/{{chains.videoId}}"
+        authentication: !bearer "{{chains.secret}}"
