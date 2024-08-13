@@ -1,0 +1,25 @@
+chains:
+  apiKey:
+    source: !env
+      variable: "API_KEY"
+    sensitive: false
+
+.ignore:
+  base: &base
+    headers:
+      Accept: application/json
+
+requests:
+  getRecommandations: !request
+    <<: *base
+    name: GET get recommandations
+    method: POST
+    url: "https://reco.mm.bf-tools.net/v1/reco"
+    body:
+      !json {
+        "where": 'contentId matches("^bunte-")',
+        "tail": "order by dateTime desc",
+        "fields": ["*"],
+      }
+    headers:
+      x-api-key: "{{chains.apiKey}}"
