@@ -5,7 +5,7 @@ BASEDIR=~/devel/github.com/thekorn/api-collection
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(printf '%s\n' "$(fd -p -t d -d 3 --min-depth 2 $BASEDIR)" | fzf)
+    selected=$(fd -p -t d -d 3 --min-depth 2 "$BASEDIR" | sed "s;$HOME;~;" | fzf)
 fi
 
 if [[ -z $selected ]]; then
